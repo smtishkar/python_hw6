@@ -9,6 +9,10 @@
 # Вышло:
 # 16410,25
 
+from initial_port_calc import portfolio_revenue_calculation
+from portfolio_growth import calculate_portfolio_return
+from profit_cal import get_most_profitable_stock, max_growth_in_money
+from equities_one_by_one import each_equity_sum
 
 
 initial_stocks = {"AAPL": 30, "GOOGL": 5, "MSFT": 8 }
@@ -18,16 +22,16 @@ initial_prices = {"AAPL": 150.25, "GOOGL": 2500.75, "MSFT": 300.50}
 current_prices = {"AAPL": 200.25, "GOOGL": 2750.75, "MSFT": 350.50} 
 
 
-def portfolio_revenue_calculation(stocks: dict, prices: dict) -> float:
-    portfolio = {key : value * prices[key] for key, value in stocks.items() if key in prices}
-    sum_portf = sum(portfolio.values()) 
-    return sum_portf
+# def portfolio_revenue_calculation(stocks: dict, prices: dict) -> float:
+#     portfolio = {key : value * prices[key] for key, value in stocks.items() if key in prices}
+#     sum_portf = sum(portfolio.values()) 
+#     return sum_portf
 
 
 initial_portfolio_sum = portfolio_revenue_calculation(initial_stocks,initial_prices)
-print(initial_portfolio_sum)
 current_portfolio_sum = portfolio_revenue_calculation(initial_stocks,current_prices)
-print(current_portfolio_sum)
+print(f"Базовая стоимость портфеля - {initial_portfolio_sum}")
+print(f"Текущая стоимость портфеля - {current_portfolio_sum}")
 
 
 # portfolio = {key : value * current_prices[key] for key, value in initial_stocks.items() if key in current_prices}
@@ -46,12 +50,12 @@ print(current_portfolio_sum)
 # Вышло:
 # 50%
 
-def calculate_portfolio_return(initial_value: float, current_value: float) -> float:            #Сделать округление
-    result = ((current_value-initial_value)/initial_value)*100
-    return result
+# def calculate_portfolio_return(initial_value: float, current_value: float) -> float:            #Сделать округление
+#     result = ((current_value-initial_value)/initial_value)*100
+#     return result
 
 growth = calculate_portfolio_return(initial_portfolio_sum, current_portfolio_sum)
-print(f'Прирост составляе - {growth}%')
+print(f'Прирост составляет - {growth}%')
 
 
 # Определение наиболее прибыльной акции: Функция get_most_profitable_stock(stocks: dict, prices: dict) -> str 
@@ -67,28 +71,28 @@ print(f'Прирост составляе - {growth}%')
 # MSFT
 
 
-def get_most_profitable_stock(stocks: dict, prices: dict) -> str:
-    dict_result = {key: value * prices[key] for key, value in stocks.items()}
-    max_valueable_equity = max(dict_result, key=dict_result.get)
-    return max_valueable_equity
+# def get_most_profitable_stock(stocks: dict, prices: dict) -> str:
+#     dict_result = {key: value * prices[key] for key, value in stocks.items()}
+#     max_valueable_equity = max(dict_result, key=dict_result.get)
+#     return max_valueable_equity
 
 
-def each_equity_sum (stocks: dict, prices: dict) -> dict:
-    result = {key: value * prices[key] for key, value in stocks.items()}
-    return result
+# def each_equity_sum (stocks: dict, prices: dict) -> dict:
+#     result = {key: value * prices[key] for key, value in stocks.items()}
+#     return result
 
 sum_each = each_equity_sum(initial_stocks, current_prices)
 most_profit_eq = get_most_profitable_stock(initial_stocks, current_prices)
 
 
-def max_growt_in_money (stocks: dict, initial_prices: dict, current_prices: dict) -> dict:
-    result = {key: value * (current_prices[key] - initial_prices[key]) for key, value in stocks.items() if key in initial_prices}
-    max_result = max(result, key=result.get)
-    print(f"Прирост за период по кадой акции - {result} ")
-    return max_result
+# def max_growth_in_money (stocks: dict, initial_prices: dict, current_prices: dict) -> dict:
+#     result = {key: value * (current_prices[key] - initial_prices[key]) for key, value in stocks.items() if key in initial_prices}
+#     max_result = max(result, key=result.get)
+#     print(f"Прирост за период по кадой акции - {result} ")
+#     return max_result
 
 
-max_equity_growth = max_growt_in_money (initial_stocks, initial_prices, current_prices)
+max_equity_growth = max_growth_in_money (initial_stocks, initial_prices, current_prices)
 
 print(f"Стоимость каждой из акций отдельно {sum_each}")
 print(f"Самая дорогая акция в портефел - {most_profit_eq}")
