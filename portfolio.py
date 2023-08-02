@@ -11,7 +11,7 @@
 
 
 
-initial_stocks = {"AAPL": 10, "GOOGL": 5, "MSFT": 8 }
+initial_stocks = {"AAPL": 30, "GOOGL": 5, "MSFT": 8 }
 initial_prices = {"AAPL": 150.25, "GOOGL": 2500.75, "MSFT": 300.50}
 
 # initial_stocks = {"AAPL": 10, "GOOGL": 5, "MSFT": 8 }  #Беру что количество акций постоянно
@@ -77,6 +77,19 @@ def each_equity_sum (stocks: dict, prices: dict) -> dict:
     result = {key: value * prices[key] for key, value in stocks.items()}
     return result
 
+sum_each = each_equity_sum(initial_stocks, current_prices)
+most_profit_eq = get_most_profitable_stock(initial_stocks, current_prices)
 
-b = get_most_profitable_stock(initial_stocks, current_prices)
-print(b)
+
+def max_growt_in_money (stocks: dict, initial_prices: dict, current_prices: dict) -> dict:
+    result = {key: value * (current_prices[key] - initial_prices[key]) for key, value in stocks.items() if key in initial_prices}
+    max_result = max(result, key=result.get)
+    print(f"Прирост за период по кадой акции - {result} ")
+    return max_result
+
+
+max_equity_growth = max_growt_in_money (initial_stocks, initial_prices, current_prices)
+
+print(f"Стоимость каждой из акций отдельно {sum_each}")
+print(f"Самая дорогая акция в портефел - {most_profit_eq}")
+print(f"Максимальный прирост показала акция - {max_equity_growth}")
