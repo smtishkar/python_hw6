@@ -11,9 +11,9 @@ current_prices = {"AAPL": 200.25, "GOOGL": 2750.75, "MSFT": 350.50}
 
 initial_portfolio_sum = portfolio_revenue_calculation(initial_stocks,initial_prices)
 current_portfolio_sum = portfolio_revenue_calculation(initial_stocks,current_prices)
-growth = calculate_portfolio_return(initial_portfolio_sum, current_portfolio_sum)
+growth = round(calculate_portfolio_return(initial_portfolio_sum, current_portfolio_sum),2)
 sum_each = each_equity_sum(initial_stocks, current_prices)
-most_profit_eq = get_most_profitable_stock(initial_stocks, current_prices)
+_most_profit_eq = get_most_profitable_stock(initial_stocks, current_prices)
 max_equity_growth = max_growth_in_money (initial_stocks, initial_prices, current_prices)
 
 
@@ -21,5 +21,5 @@ print(f"Базовая стоимость портфеля - {initial_portfolio_
 print(f"Текущая стоимость портфеля - {current_portfolio_sum}")
 print(f'Прирост составляет - {growth}%')
 print(f"Стоимость каждой из акций отдельно {sum_each}")
-print(f"Самая дорогая акция в портефел - {most_profit_eq}")
+print(f"Самая дорогая акция в портефел - {_most_profit_eq}")
 print(f"Максимальный прирост показала акция - {max_equity_growth}")
